@@ -11,15 +11,6 @@ REST API that register new users to Bankless Czech newsletter.
 2. Install dependencies with `yarn install`
 3. Rename `.env.sample` to `.env`
 4. Update variables in `.env` file
-5. If you're using different DB than PostgreSQL run these commands
-   ```markdown
-   1. Remove @mikro-cli/postgresql package
-       - `yarn remove @mikro-cli/postgresql`
-   2. Install different DB driver (https://mikro-orm.io/docs/installation/)
-       - e.g. `yarn add @mikro-cli/mysql`
-   3. Update `DB_TYPE` variable in `.env` file
-   ```
-6. Run migrations
 7. Run project in development mode with `yarn dev`
 
 ## Deployment
@@ -29,8 +20,6 @@ REST API that register new users to Bankless Czech newsletter.
 3. Rename `.env.sample` to `.env`
 4. Update variables in `.env` file
 5. Build app with `yarn build`
-6. Create `frontend` folder inside `./dist`
-7. Copy built React app into `./dist/frontend` folder
 
 
 ## Commands
@@ -47,8 +36,8 @@ Running built app from `dist` folder
 
 
 ## Deployment
-1. `$ docker build . -t bankless_mailchimp_api`
-2. `$ docker run -p 8000:8000 -d --env-file .env --name bankless_mailchimp_api bankless_mailchimp_api:latest`
+1. `$ docker build . -t bankless_api`
+2. `$ docker run -p 8000:8000 -d --env-file .env --name bankless_api_prod bankless_api:<image_tag>`
 
 
 ## Update on production
