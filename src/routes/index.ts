@@ -4,8 +4,8 @@ import SubscribersController from "./controllers/subscribers";
 
 const router = Router();
 
-// Users Routes
-router.get('/register/:email', SubscribersController.registerSubscriber);
+// Subscribers Routes
+router.post('/subscribers/register', SubscribersController.registerSubscriber);
 
 
 export default router;
