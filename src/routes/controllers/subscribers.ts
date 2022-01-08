@@ -1,4 +1,3 @@
-import crypto from "crypto";
 import {Request, Response} from "express";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 
@@ -16,13 +15,10 @@ interface RegisterSubscriberBody { email: string }
 const registerSubscriber = async (req: Request<null, null, RegisterSubscriberBody>, res: Response<APIResponse>) => {
   const { email } = req.body;
 
-  const md5Hasher = crypto.createHmac('md5', '');
-  const emailHash = md5Hasher.update(email.toLowerCase()).digest('hex');
-
   try {
-    const mRes = await mailchimp.lists.setListMember(
+    await mailchimp.lists.setListMember(
       process.env.MAILCHIMP_LIST_ID || '',
-      emailHash,
+      email,
       {
         email_address: email,
         // @ts-ignore
@@ -30,10 +26,8 @@ const registerSubscriber = async (req: Request<null, null, RegisterSubscriberBod
       }
     );
 
-    console.log(mRes);
-
     return res.send({
-      data: email,
+      data: 'Úspěšně jste se přihlásili k newsletteru.',
       error: null
     });
   } catch (e) {
@@ -41,7 +35,7 @@ const registerSubscriber = async (req: Request<null, null, RegisterSubscriberBod
 
     return res.status(400).send({
       data: null,
-      error: 'Nepodařilo se přihlásit k newsletteru'
+      error: 'Nepodařilo se přihlásit k newsletteru.'
     });
   }
 };
