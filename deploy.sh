@@ -9,7 +9,7 @@ echo "[DEPLOY.SH] DONE"
 
 echo "[DEPLOY.SH] Deleting old container & running new one"
 docker rm -f bankless_api_prod
-docker run --detach --restart=always --env-file .env -p 4040:8000 --name bankless_api_prod bankless_api:$IMAGE_TAG
+docker run --detach --restart=always --env-file .env -p 4040:4040 --name bankless_api_prod bankless_api:$IMAGE_TAG
 echo "[DEPLOY.SH] DONE"
 
 echo " "
